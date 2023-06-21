@@ -15,6 +15,5 @@ module top
   output logic txclk, rxclk,
   input  logic txready, rxready
 );
-
-
+  state_fsm u1(.clk(hwclk), .n_rst(~pb[0]), .pushed_3(pb[3]), .pushed_4(pb[4]), .mode(right[2:0]));
 endmodule
