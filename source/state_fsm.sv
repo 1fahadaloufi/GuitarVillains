@@ -3,7 +3,7 @@ module state_fsm(
     input logic n_rst,
     input logic pushed_3,
     input logic pushed_4,
-    input logic [5:0]note_count,
+    //input logic [5:0]note_count,
     
     output logic [2:0]mode
 );
@@ -15,55 +15,24 @@ module state_fsm(
     localparam FINISH = 3'd6;
 
     logic [2:0]nxt_mode;
-    logic Q1;
-    logic Q2;
-    logic Q3;
-    logic Q4;
     logic pb_3out;
     logic pb_4out;
+    sync_posedge u2(.clk(clk), .n_rst(n_rst), .button(pushed_3), .posout(pb_3out));
+    sync_posedge u3(.clk(clk), .n_rst(n_rst), .button(pushed_4), .posout(pb_4out));
+
 
     always_ff @( posedge clk, negedge n_rst)
     begin
-        if (n_rst == 1'b0) begin
+        if (~n_rst) begin
             mode <= IDLE;
-        
-        //Edge Detector for PB 3
-            Q1 <= 0;
-            Q2 <= 0;
 
-        //Edge Detector for PB 4
-            Q3 <= 0;
-            Q4 <= 0;
         end
         else begin
             mode <= nxt_mode;
 
-        //Edge Detector for PB 3
-            Q1 <= pushed_3;
-            Q2 <= Q1;
-
-        //Edge Detector for PB 4
-            Q3 <= pushed_4;
-            Q4 <= Q3;
         end
     end
 
-    //Edge Detector for PB 3
-    always_comb begin
-        if (Q1 && ~Q2)
-            pb_3out = 1;
-        else
-            pb_3out = 0;
-    end
-
-    //Edge Detector for PB 4
-    always_comb begin
-        if (Q3 && ~Q4)
-            pb_4out = 1;
-        else
-            pb_4out = 0;
-    end
-        
     always_comb 
     begin
         //FSM for State Transition
@@ -104,9 +73,9 @@ module state_fsm(
         end
         else begin
             //Autofinish via the counter
-            if(note_count == 6'd41)
+            /*if(note_count == 6'd41)
                 nxt_mode = FINISH;
-            else
+            else*/
                 nxt_mode = mode;
         end
     end

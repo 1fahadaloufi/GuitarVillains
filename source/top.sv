@@ -15,5 +15,10 @@ module top
   output logic txclk, rxclk,
   input  logic txready, rxready
 );
-  state_fsm u1(.clk(hwclk), .n_rst(~pb[0]), .pushed_3(pb[3]), .pushed_4(pb[4]), .mode(right[2:0]));
+  logic [2:0]mode;
+  assign right[2:0] = mode;
+  logic [22:0]diff_speed;
+  state_fsm u1(.clk(hwclk), .n_rst(~pb[0]), .pushed_3(pb[3]), .pushed_4(pb[4]), .mode(mode));
+  diff_speed u2(.clk(hwclk), .n_rst(~pb[19]), .mode(mode), .pushed_1(pb[1]), .diff_speed(diff_speed), .level(left[1:0]));
+
 endmodule
