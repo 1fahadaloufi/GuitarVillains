@@ -3,7 +3,7 @@ module state_fsm(
     input logic n_rst,
     input logic pushed_3,
     input logic pushed_4,
-    //input logic [5:0]note_count,
+    input logic [5:0]note_count,
     
     output logic [2:0]mode
 );
@@ -19,7 +19,6 @@ module state_fsm(
     logic Q2;
     logic Q3;
     logic Q4;
-    //logic push;
     logic pb_3out;
     logic pb_4out;
 
@@ -92,34 +91,12 @@ module state_fsm(
             endcase
         end
         else begin
-            //if(note_count == 6'd41)
-                //nxt_mode = FINISH;
-            //else
+            if(note_count == 6'd41)
+                nxt_mode = FINISH;
+            else
                 nxt_mode = mode;
         end
     end
-
-    /*always_comb
-    begin
-        if(pushed_4 == 1'b1) begin
-            case(mode)
-                IDLE:
-                    nxt_mode = FINISH;
-                EDIT:
-                    nxt_mode = FINISH;
-                DIFF:
-                    nxt_mode = FINISH;
-                RUN:
-                    nxt_mode = FINISH;
-                PAUSE:
-                    nxt_mode = FINISH;
-                default:
-                    nxt_mode = FINISH;
-            endcase
-        end
-        else
-            nxt_mode = mode;
-    end*/
 
 
 endmodule
