@@ -26,20 +26,29 @@ module state_fsm(
     begin
         if (n_rst == 1'b0) begin
             mode <= IDLE;
+        
+        //Edge Detector for PB 3
             Q1 <= 0;
             Q2 <= 0;
+
+        //Edge Detector for PB 4
             Q3 <= 0;
             Q4 <= 0;
         end
         else begin
             mode <= nxt_mode;
+
+        //Edge Detector for PB 3
             Q1 <= pushed_3;
             Q2 <= Q1;
+
+        //Edge Detector for PB 4
             Q3 <= pushed_4;
             Q4 <= Q3;
         end
     end
-    
+
+    //Edge Detector for PB 3
     always_comb begin
         if (Q1 && ~Q2)
             pb_3out = 1;
@@ -47,6 +56,7 @@ module state_fsm(
             pb_3out = 0;
     end
 
+    //Edge Detector for PB 4
     always_comb begin
         if (Q3 && ~Q4)
             pb_4out = 1;
@@ -56,6 +66,7 @@ module state_fsm(
         
     always_comb 
     begin
+        //FSM for State Transition
         if(pb_3out == 1'b1) begin
             case(mode)
                 IDLE:
@@ -75,6 +86,7 @@ module state_fsm(
             endcase
         end
         else if (pb_4out == 1'b1) begin
+            //FSM For moving everything to finish (Quit Button)
             case(mode)
                 IDLE:
                     nxt_mode = FINISH;
@@ -91,6 +103,7 @@ module state_fsm(
             endcase
         end
         else begin
+            //Autofinish via the counter
             if(note_count == 6'd41)
                 nxt_mode = FINISH;
             else
