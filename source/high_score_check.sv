@@ -1,4 +1,5 @@
 // SSD LOGIC NOT IMPLEMENTED YET
+// score bit width may have to be larger to accomodate for more points
 
 module high_score_check (
     input logic clk, n_rst,
