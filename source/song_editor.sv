@@ -139,7 +139,7 @@ else begin
 
     next_idx2 = idx_note2;
 
-    next_position = idx_note2;
+    next_position = idx_note1;
 
     case(boton_e)
 
