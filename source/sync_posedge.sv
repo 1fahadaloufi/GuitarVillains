@@ -1,5 +1,6 @@
 module sync_posedge(
     input logic clk, n_rst, button,
+    input logic [2:0] mode,
     output logic posout
 );
     logic sync_out, edge_1, edge_2, accept, next_accept;
@@ -22,26 +23,29 @@ module sync_posedge(
     end
 
     always_comb begin
-
-        if (accept)
-            posout = edge_1 & ~edge_2;
-        else
-            posout = 0;
-
-        if (posout)
-            next_accept = ~accept;
-        else
-            next_accept = accept;
-        
-        if (~accept) begin
-            if (counter == 15) begin
-                next_accept = 1'b1;
-                next_count = 0;
-            end
+        next_accept = accept;
+        next_count = 0;
+        posout = 0;
+    
+        if (mode == 3'd4) begin
+            if (accept)
+                posout = edge_1 & ~edge_2;
             else
-                next_count = counter + 1;
+                posout = 0;
+
+            if (posout)
+                next_accept = ~accept;
+
+            
+            if (~accept) begin
+                if (counter == 15) begin
+                    next_accept = 1'b1;
+                    next_count = 0;
+                end
+                else
+                    next_count = counter + 1;
+            end
         end
-        else
-            next_count = 0;
+
     end
 endmodule

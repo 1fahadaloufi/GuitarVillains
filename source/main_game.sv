@@ -11,12 +11,15 @@ module main_game (
   logic [22:0] counter;
   logic [7:0] num_hits_1, num_misses_1, num_hits_2, num_misses_2;
   logic scroll, pushed_1, pushed_2, hit_1, hit_2, missed_1, missed_2;
+
+
+
   clk_div speed(.clk(clk), .n_rst(n_rst), .lim(diff), .hzX(scroll), .counter(counter));
 
-  sync_posedge edge_button_1(.clk(clk), .n_rst(n_rst), .button(button_1), .posout(pushed_1));
-  sync_posedge edge_button_2(.clk(clk), .n_rst(n_rst), .button(button_2), .posout(pushed_2));
+  sync_posedge edge_button_1(.mode(mode), .clk(clk), .n_rst(n_rst), .button(button_1), .posout(pushed_1));
+  sync_posedge edge_button_2(.mode(mode), .clk(clk), .n_rst(n_rst), .button(button_2), .posout(pushed_2));
  
-  scroll_and_display play_song(.clk(clk), .n_rst(n_rst), .scroll(scroll), .notes1(notes1), .notes2(notes2), .padded_notes1(padded_notes1), .padded_notes2(padded_notes2), .out(out));
+  scroll_and_display play_song(.mode(mode), .clk(clk), .n_rst(n_rst), .scroll(scroll), .notes1(notes1), .notes2(notes2), .padded_notes1(padded_notes1), .padded_notes2(padded_notes2), .out(out));
 
   hit_scanning_and_scoring scoring_button_1(.clk(clk), .n_rst(n_rst), .pushed(pushed_1), .lim(diff), .padded_notes(padded_notes1), .counter(counter), .num_misses(num_misses_1), .num_hits(num_hits_1), .missed(missed_1), .good(hit_1));
   
