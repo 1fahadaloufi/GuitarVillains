@@ -16,5 +16,20 @@ module top
   input  logic txready, rxready
 );
 
+logic [4:0] position;
+song_display m3 ( .toggle_state(blue), .clk(hwclk), .nrst(~pb[2]), .toggle(pb[19]),
+
+                      .note(pb[1:0]), .current_note({ss7,ss6,ss5,ss4}) , .position(position));
+ssdec mi6 (.in(position), .out(ss0), .tens(ss1));
+  
 
 endmodule
+
+
+
+// Add more modules down here...
+
+
+
+
+
