@@ -16,7 +16,9 @@ module song_editor (
 
     output logic [4:0] position, 
 
-    output logic toggle_state
+    output logic toggle_state,
+
+    input logic [2:0] mode
 
 );
 
@@ -53,9 +55,9 @@ always_ff @(posedge clk, negedge nrst) begin
 
         
 
-        idx_note1 <= 5'b0;
+        idx_note1 <= 5'd31;
 
-        idx_note2 <= 5'b0;
+        idx_note2 <= 5'd31;
 
         position <= 5'b0;
 
@@ -90,6 +92,7 @@ end
 
 always_comb begin
 
+if(mode == 3'd2) begin
 
 next_toggle = toggle_state;
 
@@ -121,17 +124,15 @@ if(toggle_state) begin
 
     case(boton_e)
 
-        1: begin next_note2[idx_note2] = 1'b0; next_idx2 = idx_note2 + 1; end
+        1: begin next_note2[idx_note2] = 1'b0; next_idx2 = idx_note2 - 1; end
 
-        2: begin next_note2[idx_note2] = 1'b1; next_idx2 = idx_note2 + 1;end
+        2: begin next_note2[idx_note2] = 1'b1; next_idx2 = idx_note2 - 1;end
 
         default: begin next_note2[idx_note2] = note2[idx_note2] ; next_idx2 = idx_note2; end
 
     endcase  
 
-end
-
-
+    end
 
 else begin
 
@@ -143,20 +144,29 @@ else begin
 
     case(boton_e)
 
-        1: begin next_note1[idx_note1] = 1'b0; next_idx1 = idx_note1 + 1; end
+        1: begin next_note1[idx_note1] = 1'b0; next_idx1 = idx_note1 - 1; end
 
-        2: begin next_note1[idx_note1] = 1'b1; next_idx1 = idx_note1 + 1;end
+        2: begin next_note1[idx_note1] = 1'b1; next_idx1 = idx_note1 - 1;end
 
         default: begin next_note1[idx_note1] = note1[idx_note1] ; next_idx1 = idx_note1; end
 
     endcase
 
+    end
 end
 
 
+else begin
+
+next_toggle = 1'b0;
+next_note1 = 32'b0; 
+next_idx1 = 5'b0;
+next_note2 = 32'b0;  
+next_idx2 = 5'b0; 
+next_position = 5'b0;
 
 end
-
+end
 
 endmodule
 

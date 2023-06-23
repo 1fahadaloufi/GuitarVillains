@@ -17,8 +17,10 @@ module top
 );
 
 logic [4:0] position;
+logic [2:0] mode;
+logic [31:0] note1, note2;
 song_display m3 ( .toggle_state(blue), .clk(hwclk), .nrst(~pb[2]), .toggle(pb[19]),
-
+                  .note1(note1), .note2(note2), .mode(mode),
                       .note(pb[1:0]), .current_note({ss7,ss6,ss5,ss4}) , .position(position));
 ssdec mi6 (.in(position), .out(ss0), .tens(ss1));
   

@@ -1,11 +1,12 @@
-module song_display ( output logic toggle_state, input logic clk, nrst, toggle,
+module song_display ( output logic toggle_state, input logic clk, nrst, toggle, input logic [2:0] mode,
 
-                     input logic [1:0] note, output logic [31:0] current_note , output logic [4:0] position);
+                     input logic [1:0] note, output logic [31:0] current_note, note1, note2, output logic [4:0] position) ;
 
-    logic [31:0] note1, note2, next_display;
+    logic [31:0]  next_display;
 
 
-    song_editor um (.clk(clk), .nrst(nrst), .toggle(toggle), .note(note), .note1(note1), .note2(note2), .position(position), .toggle_state(toggle_state));
+    song_editor um (.clk(clk), .nrst(nrst), .toggle(toggle), .note(note), .note1(note1), 
+                    .note2(note2), .position(position), .toggle_state(toggle_state), .mode(mode));
 
 
     always_ff @(posedge clk, negedge nrst) begin
