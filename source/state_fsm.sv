@@ -3,7 +3,7 @@ module state_fsm(
     input logic n_rst,
     input logic pushed_3,
     input logic pushed_4,
-    input logic [5:0]note_count,
+    input logic fin_check,
     
     output logic [2:0]mode
 );
@@ -73,7 +73,7 @@ module state_fsm(
         end
         else begin
             //Autofinish via the counter
-            if(note_count == 6'd41)
+            if(fin_check == 1'b1)
                 nxt_mode = FINISH;
             else
                 nxt_mode = mode;
