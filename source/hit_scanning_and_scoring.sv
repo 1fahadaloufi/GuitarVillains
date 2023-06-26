@@ -100,12 +100,12 @@ module hit_scanning_and_scoring(
 
 
     if (padded_notes[37]) begin
-      if (counter == lim - 1672000)
+      if (counter == lim - 1100000)
         next_start_count = 1'b1;
       else
         next_start_count = start_count;
     end
-    else if (counter == 1672000)
+    else if (counter == 1100000)
       next_start_count = 1'b0;
     else
       next_start_count = start_count;
@@ -121,22 +121,22 @@ module hit_scanning_and_scoring(
         missed = 1'b1;
     end
 
-    if ((counts >= 1 && counts <= 700000) || (counts >= 2244000 && counts <= 3344000)) begin
+    if ((counts >= 1 && counts <= 6000000) || (counts >= 1600000 && counts <= 2200000)) begin
+      if (pushed) begin
+        next_hit = 1'b1;
+        next_acc = 1;
+      end
+    end
+    else if ((counts >= 600001 && counts <= 900000) || (counts >= 1300000 && counts <= 159999)) begin
       if (pushed) begin
         next_hit = 1'b1;
         next_acc = 3;
       end
     end
-    else if ((counts >= 700001 && counts <= 1284000) || (counts >= 1740000 && counts <= 2243999)) begin
+    else if ((counts >= 900001) && (counts <= 1299999)) begin
       if (pushed) begin
         next_hit = 1'b1;
-        next_acc = 4;
-      end
-    end
-    else if ((counts >= 1284001 && counts <= 1739999)) begin
-      if (pushed) begin
-        next_hit = 1'b1;
-        next_acc = 6;
+        next_acc = 5;
       end
     end 
     else if (pushed) begin

@@ -56,7 +56,7 @@ module main_game (
       
       if (flash_counter < 2499999) begin//50/50 duty cycle to flash on and offwhen negative score
         if (total_score <= 16'h9999 && total_score >= 16'h9901)
-          score = {nine_cmp2, nine_cmp1} + 1; //disp negative value 
+          score = {nine_cmp2, nine_cmp1}; //disp negative value 
         else
           score = 8'h99; //cap at 99
       end
