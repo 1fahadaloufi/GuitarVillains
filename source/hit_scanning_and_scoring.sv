@@ -1,6 +1,6 @@
 module hit_scanning_and_scoring(
   input logic clk, n_rst, pushed,
-  input logic [39:0] padded_notes,
+  input logic [38:0] padded_notes,
   input logic [22:0] counter, lim,
   output logic [15:0] num_misses, num_hits, 
   output logic missed, good

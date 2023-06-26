@@ -3,11 +3,11 @@ module main_game (
   input logic [2:0] mode,
   input logic clk, n_rst, button_1, button_2, 
   input logic [22:0] diff,
-  output logic [15:0] out,
+  output logic [13:0] out,
   output logic [7:0] num_misses, num_hits, score,
   output logic hit, missed, beat_clk
 );
-  logic [39 : 0] padded_notes1, padded_notes2;
+  logic [38 : 0] padded_notes1, padded_notes2;
   logic [22:0] counter, flash_counter, next_flash_counter;
   logic [15:0] num_hits_1, num_misses_1, num_hits_2, num_misses_2, total_num_hits, total_num_misses, total_score;
   logic [3:0] nine_cmp1, nine_cmp2;
