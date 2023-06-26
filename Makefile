@@ -19,7 +19,9 @@ TOP_FILE         := main_game.sv
 
 # List internal component/block files here (separate the filenames with spaces)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
-COMPONENT_FILES  := clk_div.sv hit_scanning_and_scoring.sv negedge_det.sv scroll_and_display.sv sync_posedge.sv
+
+COMPONENT_FILES  :=
+
 
 # Specify the filepath of the test bench you want to use (ie. tb_top_level.sv)
 # (do not include the source folder in the name)
