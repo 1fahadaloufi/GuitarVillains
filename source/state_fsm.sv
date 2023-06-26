@@ -56,20 +56,7 @@ module state_fsm(
         end
         else if (pb_4out == 1'b1) begin
             //FSM For moving everything to finish (Quit Button)
-            case(mode)
-                IDLE:
-                    nxt_mode = FINISH;
-                EDIT:
-                    nxt_mode = FINISH;
-                DIFF:
-                    nxt_mode = FINISH;
-                RUN:
-                    nxt_mode = FINISH;
-                PAUSE:
-                    nxt_mode = FINISH;
-                default:
-                    nxt_mode = FINISH;
-            endcase
+            nxt_mode = FINISH;
         end
         else begin
             //Autofinish via the counter
