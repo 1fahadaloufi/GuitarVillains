@@ -57,4 +57,17 @@ module top
   // finish_counter pulseout(.clk(hwclk), .n_rst(~pb[19]), .beat_clk(beat_clk), .finish(finishpulse));
 endmodule
 
+  // Your code goes here...
+  logic [31:0] notes [1:0];
+  logic [7:0] score;
+  logic [2:0] mode;
+  always_comb begin
+    if(pb[2])
+      mode = 3'b0;
+    else
+      mode = 3'd4;
+  end
 
+endmodule
+
+// Add more modules down here...
