@@ -56,12 +56,12 @@ module diff_speed(
 
     always_comb begin
         if (level == EASY)
-            diff_speed = 23'd6000000;
+            diff_speed = 23'd5000000;
         else if (level == MEDIUM)
             diff_speed = 23'd4000000;
         else if (level == HARD)
-            diff_speed = 23'd2000000;
+            diff_speed = 23'd3000000;
         else 
-            diff_speed = 23'd6000000;
+            diff_speed = 23'd5000000;
     end
 endmodule
