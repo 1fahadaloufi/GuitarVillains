@@ -3,7 +3,7 @@ module state_fsm(
     input logic n_rst,
     input logic pushed_3,
     input logic pushed_4,
-    input logic [5:0]note_count,
+    input logic fin_check,
     
     output logic [2:0]mode
 );
@@ -56,24 +56,11 @@ module state_fsm(
         end
         else if (pb_4out == 1'b1) begin
             //FSM For moving everything to finish (Quit Button)
-            case(mode)
-                IDLE:
-                    nxt_mode = FINISH;
-                EDIT:
-                    nxt_mode = FINISH;
-                DIFF:
-                    nxt_mode = FINISH;
-                RUN:
-                    nxt_mode = FINISH;
-                PAUSE:
-                    nxt_mode = FINISH;
-                default:
-                    nxt_mode = FINISH;
-            endcase
+            nxt_mode = FINISH;
         end
         else begin
             //Autofinish via the counter
-            if(note_count == 6'd41)
+            if(fin_check == 1'b1)
                 nxt_mode = FINISH;
             else
                 nxt_mode = mode;

@@ -20,11 +20,11 @@ module tb_state_fsm();
     logic tb_n_rst;
     logic tb_pushed_3;
     logic tb_pushed_4;
-    logic [5:0]tb_note_count;
+    logic tb_fin_check;
     logic [2:0]tb_mode;
 
     //Instantiate the Module
-    state_fsm DUT(.clk(tb_clk), .n_rst(tb_n_rst), .pushed_3(tb_pushed_3), .pushed_4(tb_pushed_4), .note_count(tb_note_count[5:0]), .mode(tb_mode[2:0]));
+    state_fsm DUT(.clk(tb_clk), .n_rst(tb_n_rst), .pushed_3(tb_pushed_3), .pushed_4(tb_pushed_4), .fin_check(tb_fin_check), .mode(tb_mode[2:0]));
 
     //Clock Generation Block
 
@@ -87,7 +87,7 @@ module tb_state_fsm();
         tb_n_rst = REST_INACTIVE;
         tb_pushed_3 = 1'b0;
         tb_pushed_4 = 1'b0;
-        tb_note_count = 6'b0;
+        tb_fin_check = 1'b0;
 
         reset_DUT();
         #(CLK_PERIOD * 5);
@@ -103,11 +103,11 @@ module tb_state_fsm();
         check_mode(RUN, "RUN");
         //single_button_press3();
         #(CLK_PERIOD * 5);
-        tb_note_count = 6'd41;
+        tb_fin_check = 1'b1;
         #(CLK_PERIOD * 5);
         check_mode(FINISH, "FINISH");
         #(CLK_PERIOD * 10);
-        tb_note_count = 6'b0;
+        tb_fin_check = 1'b0;
         #(CLK_PERIOD * 10);
         single_button_press3();
         #(CLK_PERIOD * 5);
