@@ -2,7 +2,8 @@ module song_editor (
 
     // HW
 
-    input logic clk, nrst, toggle,
+    input logic clk, nrst, toggle, 
+    input logic [2:0] mode,
 
     input logic [1:0] note,
 
@@ -13,12 +14,11 @@ module song_editor (
     output logic [31:0] note1, note2, 
 
     // outputs
+    output logic [6:0] display_note1 , display_note2,
 
     output logic [4:0] position, 
 
-    output logic toggle_state,
-
-    input logic [2:0] mode
+    output logic toggle_state
 
 );
 
@@ -47,6 +47,9 @@ sync_edge_det boton1e ( .clk(clk), .Rst(nrst), .button_i(note[1]), .sig_f(boton_
 
 sync_edge_det boton2e ( .clk(clk), .Rst(nrst), .button_i(toggle), .sig_f(boton02e));
 
+note_led_display drum (.clk(clk), .nrst(nrst), .next_note1(next_note1), .next_note2(next_note2), .mode(mode),
+                         .next_idx1(next_idx1), .next_idx2(next_idx2),
+                        .display_note1(display_note1), .display_note2(display_note2));
 
 
 always_ff @(posedge clk, negedge nrst) begin
@@ -59,7 +62,7 @@ always_ff @(posedge clk, negedge nrst) begin
 
         idx_note2 <= 5'd31;
 
-        position <= 5'b0;
+        position <= 5'd31;
 
         toggle_state <= 1'b0;
 
@@ -92,8 +95,10 @@ end
 
 always_comb begin
 
-if(mode == 3'd2) begin
 
+
+
+if(mode == 3'd2) begin
 next_toggle = toggle_state;
 
 if(boton02e) begin
@@ -132,7 +137,9 @@ if(toggle_state) begin
 
     endcase  
 
-    end
+end
+
+
 
 else begin
 
@@ -140,7 +147,7 @@ else begin
 
     next_idx2 = idx_note2;
 
-    next_position = idx_note1;
+    next_position = idx_note2;
 
     case(boton_e)
 
@@ -152,21 +159,24 @@ else begin
 
     endcase
 
-    end
+end
+
+end 
+
+else begin 
+    next_idx1 = 5'b0;
+    next_idx2 = 5'b0;
+    next_position = 5'b0;
+    next_toggle = 1'b0;
+    next_note1 = 32'b0;
+    next_note2 = 32'b0;
+
 end
 
 
-else begin
-
-next_toggle = 1'b0;
-next_note1 = 32'b0; 
-next_idx1 = 5'b0;
-next_note2 = 32'b0;  
-next_idx2 = 5'b0; 
-next_position = 5'b0;
 
 end
-end
+
 
 endmodule
 
