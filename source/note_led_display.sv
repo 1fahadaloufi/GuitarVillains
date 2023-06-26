@@ -31,6 +31,8 @@ module note_led_display (
 
 
     always_comb begin
+        next_d1 = display_note1;
+        next_d2 = display_note2;
         if(mode == 3'd2) begin 
             case(next_idx2)
             0: next_d2 = {next_note2[0], 6'b0};
@@ -45,6 +47,7 @@ module note_led_display (
                 next_d2[2] = next_note2[next_idx2 - 4];
                 next_d2[3] = next_note2[next_idx2 - 3];
                 next_d2[4] = next_note2[next_idx2 - 2];
+                next_d2[5] = next_note2[next_idx2 - 1];
                 next_d2[6] = next_note2[next_idx2];
             end
             endcase
@@ -62,6 +65,7 @@ module note_led_display (
                 next_d1[2] = next_note1[next_idx1 - 4];
                 next_d1[3] = next_note1[next_idx1 - 3];
                 next_d1[4] = next_note1[next_idx1 - 2];
+                next_d1[5] = next_note1[next_idx1 - 1];
                 next_d1[6] = next_note1[next_idx1];
             end
             endcase

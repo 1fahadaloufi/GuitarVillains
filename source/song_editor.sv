@@ -48,8 +48,7 @@ sync_edge_det boton1e ( .clk(clk), .Rst(nrst), .button_i(note[1]), .sig_f(boton_
 sync_edge_det boton2e ( .clk(clk), .Rst(nrst), .button_i(toggle), .sig_f(boton02e));
 
 note_led_display drum (.clk(clk), .nrst(nrst), .next_note1(next_note1), .next_note2(next_note2), .mode(mode),
-                         .next_idx1(next_idx1), .next_idx2(next_idx2),
-                        .display_note1(display_note1), .display_note2(display_note2));
+                         .next_idx1(next_idx1), .next_idx2(next_idx2), .display_note1(display_note1), .display_note2(display_note2));
 
 
 always_ff @(posedge clk, negedge nrst) begin
@@ -147,7 +146,7 @@ else begin
 
     next_idx2 = idx_note2;
 
-    next_position = idx_note2;
+    next_position = idx_note1;
 
     case(boton_e)
 
