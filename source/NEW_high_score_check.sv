@@ -1,8 +1,9 @@
 module NEW_high_score_check (
     input logic clk, n_rst, score_tog,
-    input logic [7:0] score,
+    input logic [7:0] score, hits, misses,
     input logic [2:0] mode,
-    output logic [13:0] SS_disp
+    output logic [13:0] SS_disp,
+    output logic red, green
 );
 
 logic [7:0] next_high, highest_score;
@@ -27,6 +28,18 @@ always_ff @ (posedge clk, negedge n_rst) begin
         highest_score <= next_high;
 end
 
+// code for the display begins below
+
+sync_posedge u1(.clk(clk), .n_rst(n_rst), .button(score_tog), .posout(sync_edg_det));
+
+logic [1:0] nxt_mode, score_mode;
+logic sync_edg_det;
+
+localparam curr_score = 2'd0;
+localparam hi_score = 2'd1;
+localparam hit = 2'd2;
+localparam miss = 2'd3;
+
 always_comb begin
     SEG7[4'b0000] = 7'b0111111;
     SEG7[4'b0001] = 7'b0000110;
@@ -40,11 +53,69 @@ always_comb begin
     SEG7[4'b1001] = 7'b1100111;
 end
 
+always_ff @ (posedge clk, negedge n_rst) begin
+    if (!n_rst)
+        score_mode <= curr_score;
+    else 
+        score_mode <= nxt_mode;
+end
+
+always_comb begin 
+    case (score_mode)
+        curr_score : begin
+            SS_disp = {SEG7[score[7:4]], SEG7[score[3:0]]};
+            red = 0;
+            green = 0;
+        end
+        hi_score : begin
+            SS_disp = {SEG7[highest_score[7:4]], SEG7[highest_score[3:0]]};
+            red = 1;
+            green = 1;
+        end
+        hit : begin
+            SS_disp = {SEG7[hits[7:4]], SEG7[hits[3:0]]};
+            red = 0;
+            green = 1;
+        end
+        miss: begin
+            SS_disp = {SEG7[misses[7:4]], SEG7[misses[3:0]]};
+            red = 1;
+            green = 0;
+        end
+        default: begin 
+            SS_disp = {SEG7[score[7:4]], SEG7[score[3:0]]};
+            red = 0;
+            green = 0;
+        end
+    endcase
+end
+
 always_comb begin
-    case (score_tog)
-        1'b1 : SS_disp = {SEG7[highest_score[7:4]], SEG7[highest_score[3:0]]};
-        1'b0 : SS_disp = {SEG7[score[7:4]], SEG7[score[3:0]]};
-        default: SS_disp = {SEG7[score[7:4]], SEG7[score[3:0]]};
+    case (score_mode)
+        curr_score : begin
+            if (sync_edg_det == 1)
+                nxt_mode = hi_score;
+            else
+                nxt_mode = curr_score;
+        end
+        hi_score : begin
+            if (sync_edg_det == 1)
+                nxt_mode = hit;
+            else
+                nxt_mode = hi_score;
+        end
+        hit : begin
+            if (sync_edg_det == 1)
+                nxt_mode = miss;
+            else
+                nxt_mode = hit;
+        end
+        miss : begin
+            if (sync_edg_det == 1)
+                nxt_mode = curr_score;
+            else
+                nxt_mode = miss;
+        end
     endcase
 end
 
