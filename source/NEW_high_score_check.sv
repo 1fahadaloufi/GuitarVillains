@@ -1,5 +1,5 @@
 module NEW_high_score_check (
-    input logic clk, n_rst,
+    input logic clk, n_rst, score_tog,
     input logic [7:0] score,
     input logic [2:0] mode,
     output logic [13:0] SS_disp
@@ -40,6 +40,12 @@ always_comb begin
     SEG7[4'b1001] = 7'b1100111;
 end
 
-assign SS_disp = {SEG7[highest_score[7:4]], SEG7[highest_score[3:0]]};
+always_comb begin
+    case (score_tog)
+        1'b1 : SS_disp = {SEG7[highest_score[7:4]], SEG7[highest_score[3:0]]};
+        1'b0 : SS_disp = {SEG7[score[7:4]], SEG7[score[3:0]]};
+        default: SS_disp = {SEG7[score[7:4]], SEG7[score[3:0]]};
+    endcase
+end
 
 endmodule
