@@ -2,11 +2,10 @@ module NEW_high_score_check (
     input logic clk, n_rst,
     input logic [7:0] score,
     input logic [2:0] mode,
-    output logic [7:0] highest_score,
     output logic [13:0] SS_disp
 );
 
-logic [7:0] next_high;
+logic [7:0] next_high, highest_score;
 logic [6:0] SEG7 [9:0];
 localparam FINISH = 3'b101;
 
