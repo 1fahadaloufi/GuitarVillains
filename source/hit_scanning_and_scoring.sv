@@ -120,7 +120,7 @@ module hit_scanning_and_scoring(
         next_acc = 1;
       end
     end
-    else if ((counts >= 780001 && counts <= 1284000) || (counts >= 1740000 && counts <= 2243999)) begin
+    else if ((counts >= 700001 && counts <= 1284000) || (counts >= 1740000 && counts <= 2243999)) begin
       if (pushed) begin
         next_hit = 1'b1;
         next_acc = 2;
@@ -132,14 +132,8 @@ module hit_scanning_and_scoring(
         next_acc = 3;
       end
     end 
-    else begin
-      if (pushed) begin
+    else if (pushed) begin
         next_num_misses = num_misses + 1;
-      end
-      else begin
-        next_num_misses = num_misses;
-      end
-      next_hit = hit;
     end
    
     if (check) begin
@@ -147,7 +141,7 @@ module hit_scanning_and_scoring(
       if(hit)
         next_num_hits = num_hits + {6'b0, acc};
       else
-        next_num_misses = num_misses + {6'b0, acc};
+        next_num_misses = num_misses + 1;
     end
    
   end

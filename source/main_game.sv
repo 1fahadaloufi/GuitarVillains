@@ -5,7 +5,7 @@ module main_game (
   input logic [22:0] diff,
   output logic [15:0] out,
   output logic [7:0] num_misses, num_hits, score,
-  output logic hit, missed
+  output logic hit, missed, beat_clk
 );
   logic [39 : 0] padded_notes1, padded_notes2;
   logic [22:0] counter;
@@ -24,6 +24,8 @@ module main_game (
   hit_scanning_and_scoring scoring_button_1(.clk(clk), .n_rst(n_rst), .pushed(pushed_1), .lim(diff), .padded_notes(padded_notes1), .counter(counter), .num_misses(num_misses_1), .num_hits(num_hits_1), .missed(missed_1), .good(hit_1));
   
   hit_scanning_and_scoring scoring_button_2(.clk(clk), .n_rst(n_rst), .pushed(pushed_2), .lim(diff), .padded_notes(padded_notes2), .counter(counter), .num_misses(num_misses_2), .num_hits(num_hits_2), .missed(missed_2), .good(hit_2));
+
+  assign beat_clk = scroll;
 
   assign num_hits = num_hits_1 + num_hits_2;
   assign num_misses = num_misses_1 + num_misses_2;

@@ -4,7 +4,7 @@ module sync_posedge(
     output logic posout
 );
     logic sync_out, edge_1, edge_2, accept, next_accept;
-    logic [5:0] counter, next_count;
+    logic [22:0] counter, next_count;
     always_ff @ (posedge clk, negedge n_rst) begin
         if (~n_rst) begin
             sync_out <= 0;
@@ -38,7 +38,7 @@ module sync_posedge(
 
             
             if (~accept) begin
-                if (counter == 15) begin
+                if (counter == 800000) begin
                     next_accept = 1'b1;
                     next_count = 0;
                 end
