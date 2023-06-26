@@ -30,7 +30,10 @@ end
 
 // code for the display begins below
 
+sync_posedge u1(.clk(clk), .n_rst(n_rst), .button(score_tog), .posout(sync_edg_det));
+
 logic [1:0] nxt_mode, score_mode;
+logic sync_edg_det;
 
 localparam curr_score = 2'd0;
 localparam hi_score = 2'd1;
@@ -90,25 +93,25 @@ end
 always_comb begin
     case (score_mode)
         curr_score : begin
-            if (score_tog == 1)
+            if (sync_edg_det == 1)
                 nxt_mode = hi_score;
             else
                 nxt_mode = curr_score;
         end
         hi_score : begin
-            if (score_tog == 1)
+            if (sync_edg_det == 1)
                 nxt_mode = hit;
             else
                 nxt_mode = hi_score;
         end
         hit : begin
-            if (score_tog == 1)
+            if (sync_edg_det == 1)
                 nxt_mode = miss;
             else
                 nxt_mode = hit;
         end
         miss : begin
-            if (score_tog == 1)
+            if (sync_edg_det == 1)
                 nxt_mode = curr_score;
             else
                 nxt_mode = miss;
