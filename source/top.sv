@@ -24,6 +24,7 @@ module top
   //Sends out pulse for when notes are all finished
   finish_counter pulseout(.clk(hwclk), .n_rst(~pb[19]), .beat_clk(beat_clk), .finish(finishpulse));
 
+
   //State FSM (Switches between the states)
   //Uses pushbutton 3 and pushbuton 4
   state_fsm modetrans(.clk(hwclk), .n_rst(~pb[19]), .pushed_3(pb[3]), .pushed_4(pb[4]), .fin_check(finishpulse), .mode(mode));
