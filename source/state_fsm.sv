@@ -56,7 +56,10 @@ module state_fsm(
         end
         else if (pb_4out == 1'b1) begin
             //FSM For moving everything to finish (Quit Button)
-            nxt_mode = FINISH;
+            if (mode != EDIT)
+                nxt_mode = FINISH;
+            else
+                nxt_mode = mode;
         end
         else begin
             //Autofinish via the counter

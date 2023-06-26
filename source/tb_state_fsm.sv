@@ -130,7 +130,14 @@ module tb_state_fsm();
         single_button_press3();
         #(CLK_PERIOD * 5);
         check_mode(IDLE, "IDLE");
+        single_button_press3();
         #(CLK_PERIOD * 10);
+        check_mode(EDIT, "EDIT");
+        single_button_press4();
+        #(CLK_PERIOD * 5);
+        check_mode(EDIT, "EDIT");
+        #(CLK_PERIOD * 10);
+        
         
 
 
