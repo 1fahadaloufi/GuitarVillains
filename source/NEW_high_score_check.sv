@@ -1,5 +1,5 @@
 module NEW_high_score_check (
-    input logic clk, n_rst, score_tog,
+    input logic clk, n_rst, score_tog, flash, is_neg,
     input logic [7:0] score, hits, misses,
     input logic [2:0] mode,
     output logic [13:0] SS_disp,
@@ -8,11 +8,11 @@ module NEW_high_score_check (
 
 logic [7:0] next_high, highest_score;
 logic [6:0] SEG7 [9:0];
-localparam FINISH = 3'b101;
+localparam FINISH = 3'd6;
 
 always_comb begin
     if (mode == FINISH) begin // 3'b101 = FINISH state
-        if (score > highest_score)
+        if (score > highest_score && ~is_neg)
             next_high = score;
         else
             next_high = highest_score;
@@ -30,7 +30,7 @@ end
 
 // code for the display begins below
 
-sync_posedge u1(.clk(clk), .n_rst(n_rst), .button(score_tog), .posout(sync_edg_det));
+sync_posedgeqiao u1(.clk(clk), .n_rst(n_rst), .button(score_tog), .posout(sync_edg_det));
 
 logic [1:0] nxt_mode, score_mode;
 logic sync_edg_det;
@@ -63,7 +63,7 @@ end
 always_comb begin 
     case (score_mode)
         curr_score : begin
-            SS_disp = {SEG7[score[7:4]], SEG7[score[3:0]]};
+            SS_disp = (flash) ? {SEG7[score[7:4]], SEG7[score[3:0]]} : 0;
             red = 0;
             green = 0;
         end

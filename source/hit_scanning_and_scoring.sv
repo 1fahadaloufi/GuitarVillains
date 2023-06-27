@@ -1,5 +1,7 @@
+`default_nettype none
 module hit_scanning_and_scoring(
   input logic clk, n_rst, pushed,
+  input logic [2:0] mode,
   input logic [38:0] padded_notes,
   input logic [22:0] counter, lim,
   output logic [15:0] num_misses, num_hits, 
@@ -9,7 +11,8 @@ module hit_scanning_and_scoring(
   logic [22:0] counts, next_count;
   logic [15:0] next_num_misses, next_num_hits;
   logic [15:0] add_hit, add_miss;
-  logic start_count, next_start_count, hit, next_hit, check;
+  logic [22:0] next_flash_counter_1, flash_counter_1, next_flash_counter_2, flash_counter_2;
+  logic start_count, next_start_count, hit, next_hit, check, next_missed, next_good;
 
 
   negedge_det check_hit(.clk(clk), .n_rst(n_rst), .in(start_count), .neg_edge(check)); //check if note was hit or missed
@@ -21,7 +24,11 @@ module hit_scanning_and_scoring(
       start_count <= 0;
       num_misses <= 0;
       num_hits <= 0;
-      acc <= 0;
+      acc <= 1;
+      good <= 0;
+      missed <= 0;
+      flash_counter_1 <= 0;
+      flash_counter_2 <= 0;
     end
     else begin
       acc <= next_acc;
@@ -30,6 +37,10 @@ module hit_scanning_and_scoring(
       start_count <= next_start_count;
       num_misses <= next_num_misses;
       num_hits <= next_num_hits;
+      good <= next_good;
+      missed <= next_missed;
+      flash_counter_1 <= next_flash_counter_1;
+      flash_counter_2 <= next_flash_counter_2;
     end
   end
     
@@ -43,8 +54,34 @@ module hit_scanning_and_scoring(
     next_num_hits = num_hits;
     next_hit = hit;
     next_acc = acc;
-    good = 1'b0;
-    missed = 1'b0;
+    next_good = good;
+    next_missed = missed;
+    next_flash_counter_2 = 0;
+    next_flash_counter_1 = 0;
+    
+
+    if (mode == 3'd1) begin
+      next_num_misses = 0;
+      next_num_hits = 0;
+    end
+
+    if (good) begin
+      if (flash_counter_1 == 1000000) begin
+        next_flash_counter_1 = 0;
+        next_good = 0;
+      end
+      else
+        next_flash_counter_1 = flash_counter_1 + 1;
+    end
+
+    if (missed) begin
+      if (flash_counter_2 == 1000000) begin
+        next_flash_counter_2 = 0;
+        next_missed = 0;
+      end
+      else
+        next_flash_counter_2 = flash_counter_2 + 1;
+    end
     /*
     if (padded_notes[37]) begin
       if (counter == lim - 10)
@@ -97,11 +134,25 @@ module hit_scanning_and_scoring(
       end
       next_hit = hit;
     end */
-
-
+    /*
     if (padded_notes[37]) begin
-      if (counter == lim - 1100000)
+      if (counter == lim - 10)
         next_start_count = 1'b1;
+      else if (counter == 10)
+        next_start_count = 1'b0;
+      else
+        next_start_count = start_count;
+    end
+    else if (counter == 10)
+      next_start_count = 1'b0;
+    else
+      next_start_count = start_count;
+*/
+    if (padded_notes[37]) begin
+      if (counter == lim - 23'd1100000)
+        next_start_count = 1'b1;
+      else if (counter == 23'd1100000)
+        next_start_count = 1'b0;
       else
         next_start_count = start_count;
     end
@@ -113,12 +164,12 @@ module hit_scanning_and_scoring(
     if (start_count) begin
       next_count = counter + 1;
       if (pushed)
-        good = 1'b1;
+        next_good = 1'b1;
     end
     else begin
       next_count = 0;
       if (pushed)
-        missed = 1'b1;
+        next_missed = 1'b1;
     end
 
     if ((counts >= 1 && counts <= 6000000) || (counts >= 1600000 && counts <= 2200000)) begin

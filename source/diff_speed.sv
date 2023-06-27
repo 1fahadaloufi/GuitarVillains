@@ -11,11 +11,12 @@ module diff_speed(
     localparam EASY = 2'd1;
     localparam MEDIUM = 2'd2;
     localparam HARD = 2'd3;
-    localparam DIFF = 3'd3;
 
+    localparam DIFF = 3'd3;
+    
     logic [1:0]nxt_lvl;
     logic pb_1out;
-    sync_posedge u4(.clk(clk), .n_rst(n_rst), .button(pushed_1), .posout(pb_1out));
+    sync_posedgeqiao u4(.clk(clk), .n_rst(n_rst), .button(pushed_1), .posout(pb_1out));
 
     always_ff @(posedge clk, negedge n_rst)
     begin

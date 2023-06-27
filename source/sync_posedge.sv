@@ -3,31 +3,33 @@ module sync_posedge(
     input logic [2:0] mode,
     output logic posout
 );
-    logic sync_out, edge_1, edge_2, accept, next_accept;
+    logic sync_out, edge_1, edge_2; //accept, next_accept;
     logic [22:0] counter, next_count;
     always_ff @ (posedge clk, negedge n_rst) begin
         if (~n_rst) begin
             sync_out <= 0;
             edge_1 <= 0;
             edge_2 <= 0;
-            accept <= 1;
+            //accept <= 1;
             counter <= 0;
         end
         else begin
             sync_out <= button;
             edge_1 <= sync_out;
             edge_2 <= edge_1;
-            accept <= next_accept;
+            //accept <= next_accept;
             counter <= next_count;
         end
     end
 
     always_comb begin
-        next_accept = accept;
+        //next_accept = accept;
         next_count = 0;
         posout = 0;
     
         if (mode == 3'd4) begin
+            posout = edge_1 & ~edge_2;
+            /*
             if (accept)
                 posout = edge_1 & ~edge_2;
             else
@@ -44,7 +46,7 @@ module sync_posedge(
                 end
                 else
                     next_count = counter + 1;
-            end
+            end*/
         end
 
     end
