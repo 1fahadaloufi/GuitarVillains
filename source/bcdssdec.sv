@@ -1,4 +1,5 @@
 module bcdssdec (
+    input logic enable,
     input logic [7:0] in,
     output logic [13:0] out
 );
@@ -18,6 +19,6 @@ always_comb begin
     SEG7[4'b1001] = 7'b1100111;
 end
 
-assign out = {SEG7[in[7:4]], SEG7[in[3:0]]};
+assign out = (enable) ? {SEG7[in[7:4]], SEG7[in[3:0]]} : 0;
 
 endmodule

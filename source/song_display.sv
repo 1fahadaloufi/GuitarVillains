@@ -1,6 +1,6 @@
 module song_display ( output logic toggle_green, toggle_red, input logic clk, nrst, toggle, input logic [2:0] mode,
 
-                     input logic [1:0] note, output logic [31:0] note1, note2, output logic [7:0] units, tens, output logic [6:0] display_note1 , display_note2) ;
+                     input logic [1:0] note, output logic [31:0] note1, note2, output logic [6:0] units, tens, output logic [6:0] display_note1 , display_note2) ;
 
     //logic [31:0]  next_display, current_note;
     logic toggle_state, next_green, next_red;

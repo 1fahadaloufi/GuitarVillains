@@ -17,8 +17,8 @@ module state_fsm(
     logic [2:0]nxt_mode;
     logic pb_3out;
     logic pb_4out;
-    sync_posedge u2(.clk(clk), .n_rst(n_rst), .button(pushed_3), .posout(pb_3out));
-    sync_posedge u3(.clk(clk), .n_rst(n_rst), .button(pushed_4), .posout(pb_4out));
+    sync_posedgeqiao u2(.clk(clk), .n_rst(n_rst), .button(pushed_3), .posout(pb_3out));
+    sync_posedgeqiao u3(.clk(clk), .n_rst(n_rst), .button(pushed_4), .posout(pb_4out));
 
 
     always_ff @( posedge clk, negedge n_rst)

@@ -3,5 +3,5 @@ module fa (
   output logic s, co
 );
   assign s = a ^ b ^ ci;
-  assign co = (a & b) | ((a ^ b) & ci);
+  assign co = (a & b) | ((a | b) & (ci));
 endmodule
