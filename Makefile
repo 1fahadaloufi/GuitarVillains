@@ -15,17 +15,19 @@ export LD_LIBRARY_PATH := /home/shay/a/ece270/lib:$(LD_LIBRARY_PATH)
 
 # Specify the name of the top level file (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
-TOP_FILE         := main_game.sv 
+TOP_FILE         := 
 
 # List internal component/block files here (separate the filenames with spaces)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
 
-COMPONENT_FILES  :=
+COMPONENT_FILES  :=  bcd9comp1.sv bcdadd1.sv bcdadd4.sv bcdaddsub4.sv bcdssdec.sv clk_div.sv diff_speed.sv  finish_counter.sv Guitar_Villans.sv hit_scanning_and_scoring.sv main_game.sv negedge_det.sv NEW_high_score_check.sv note_led_display.sv scroll_and_display.sv song_display.sv song_editor.sv ssdec.sv state_fsm.sv sync_edge_det.sv sync_posedge.sv sync_posedgeqiao.sv
+
+# song_display.sv song_editor.sv ssdec.sv sync_edge_det.sv note_led_display.sv
 
 
 # Specify the filepath of the test bench you want to use (ie. tb_top_level.sv)
 # (do not include the source folder in the name)
-TB               :=  tb_main_game.sv
+TB               :=  
 
 # Get the top level design and test_bench module names
 TB_MODULE		 := $(notdir $(basename $(TB)))
