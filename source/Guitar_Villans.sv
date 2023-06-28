@@ -2,6 +2,7 @@ module Guitar_Villans(
     input logic clk,
     input logic n_rst,
     input logic [3:0]button,
+    input logic chip_select,
 
 
 
@@ -12,7 +13,8 @@ module Guitar_Villans(
     output logic [6:0]ss0,
     output logic [6:0]ss1
 
-);    
+);
+  logic button2_act, button3_act;     
   logic [22:0]diff_speed;
   logic finishpulse;
   logic beat_clk;
@@ -71,10 +73,22 @@ module Guitar_Villans(
   localparam PAUSE = 3'd5;
   localparam FINISH = 3'd6;
 
+  always_comb begin
+    if(~chip_select) begin
+      button2_act = button[2];
+      button3_act= button[3]; 
+  end
+  else begin
+    button2_act = 0;
+    button3_act= 0; 
+  end
+  end
+
 // assign finishpulse = 1'b0;
 
   //All of the DISPLAYED Outputs
   always_comb begin
+    if(~chip_select) begin
     case(mode)
       IDLE: begin
         green_disp = 1'b0;
@@ -156,6 +170,15 @@ module Guitar_Villans(
         ss0 = 7'b0;
       end
     endcase
+    end 
+    else begin
+       green_disp = 1'b0;
+        red_disp = 1'b0;
+        top_row = 7'b0;
+        bottom_row = 7'b0;
+        ss1 = 7'b0;
+        ss0 = 7'b0;
+    end
   end
 
   //DO NOT USE BUTTON 3 - Quit Button - Used in State FSM
@@ -167,7 +190,7 @@ module Guitar_Villans(
 
   //State FSM (Switches between the states)
   //Uses pushbutton 3 and pushbuton 4
-  state_fsm modetrans(.clk(clk), .n_rst(n_rst), .pushed_3(button[2]), .pushed_4(button[3]), .fin_check(finishpulse), .mode(mode));
+  state_fsm modetrans(.clk(clk), .n_rst(n_rst), .pushed_3(button2_act), .pushed_4(button3_act), .fin_check(finishpulse), .mode(mode));
 
   //Difficulty FSM (Lets user pick their levels)
   //Uses pushbutton 1
