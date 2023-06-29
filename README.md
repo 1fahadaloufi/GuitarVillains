@@ -1,6 +1,6 @@
 # STARS 2023 Design Final Project
 
-## Beats by Fahad TM
+## Guitar Villains
 * Jakob Dieffenbach
 * Shresth Mathur
 * Claire Qiao
@@ -15,17 +15,17 @@ Two rows of LED's each display their own sequence of beats that scroll from righ
 In addition to the main game, the design includes other features. The player can use a button to change between modes that allow them to select the speed of the beats, freely change the sequence of beats for each row, pause the gmae, or view the the current high score.
 
 ## Pin Layout
-GPIO[7:4] = button[3:0]
-GPIO[14:8] = top_row[6:0]
-GPIO[21:15] = bottom_row[6:0]
-GPIO[28:22] = ss0[6:0]
-GPIO[35:29] = ss1[6:0]
-GPIO[36] = red_disp
-GPIO[37] = green_disp
+- GPIO[7:4] = button[3:0]
+- GPIO[14:8] = top_row[6:0]
+- GPIO[21:15] = bottom_row[6:0]
+- GPIO[28:22] = ss0[6:0]
+- GPIO[35:29] = ss1[6:0]
+- GPIO[36] = red_disp
+- GPIO[37] = green_disp
 
 ## Supporting Equipment
-1 red LED
-1 green LED
+- 1 red LED
+- 1 green LED
 14 x color LED
 2 seven segment displays
 
