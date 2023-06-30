@@ -44,8 +44,7 @@ In addition to the main game, the design includes other features. The player can
 
 
 ## RTL Diagrams
-All the stuff from the proposal goes here, obviously updated from the time you did the proposal to the final layout
-Include more than just block diagrams, including sub-block diagrams, state-transition diagrams, flowcharts, and timing diagrams
+![Top RTL](https://github.com/STARS-Design-Track-2023/GuitarVillains/blob/jakob/main_game/docs/Component%20RTL-Top%20RTL.png)
 
 ## Statement from Purdue
 Pending
