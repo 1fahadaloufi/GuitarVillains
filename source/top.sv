@@ -15,7 +15,7 @@ module top
   output logic txclk, rxclk,
   input  logic txready, rxready
 );
-  Guitar_Villans fullrun(.chip_select(1'b0), .clk(hwclk), .n_rst(~pb[19]), .button(pb[3:0]), .top_row(left[7:1]), .bottom_row(right[7:1]), .red_disp(red), .green_disp(green), .ss0(ss0[6:0]), .ss1(ss1[6:0]));
+  Guitar_Villains fullrun(.chip_select(1'b0), .clk(hwclk), .n_rst(~pb[19]), .button(pb[3:0]), .top_row(left[7:1]), .bottom_row(right[7:1]), .red_disp(red), .green_disp(green), .ss0(ss0[6:0]), .ss1(ss1[6:0]));
   
   //   //For EDIT DISPLAY Module
   // logic toggle1;
