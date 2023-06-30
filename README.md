@@ -28,6 +28,21 @@ In addition to the main game, the design includes other features. The player can
 - GPIO[36] = red_disp
 - GPIO[37] = green_disp
 
+## insert an image for the project
+
+## [Team Name]
+* Team Member 1
+* Team Member 2
+* Team Member 3
+* Team Member 4
+* Project Manager  
+
+## [Project Name]
+Description of functionality, how to use it, and any supporting equipment required. Here also link to the user manual document within the github repository. 
+
+## Pin Layout
+Put all the GPIO pin numbers, i/o/io determination, and labels. Start labeling the GPIOs from 0 to 33 rather than from 4 - 37. 
+
 ## Supporting Equipment
 ![Breadboard Layout](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs/Breadboard.png)
 - 1 red LED
@@ -46,4 +61,6 @@ In addition to the main game, the design includes other features. The player can
 
 ## RTL Diagrams
 ![Top RTL](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs/Component%20RTL-Top%20RTL.png)
+Only show and describe your top-level RTL that shows the total # of flip flops here. For the rest of your RTLs, link to a "docs" directory within the GitHub page
+that shows all component RTLs, state diagrams, and the top level RTL. Please have those as a PDF or a JPEG. 
 

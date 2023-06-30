@@ -1,6 +1,7 @@
 module clk_div(
   input logic clk, n_rst,
   input logic [22:0] lim,
+  input logic [2:0]mode,
   output logic hzX,
   output logic [22:0] counter
 );
@@ -10,7 +11,7 @@ module clk_div(
       hzX <= 0;
     end
     else begin
-      if (counter == lim) begin
+      if ((counter == lim) && (mode == 3'd4)) begin
         counter <= 0;
         hzX <= 1'b1;
       end

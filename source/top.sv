@@ -15,21 +15,26 @@ module top
   output logic txclk, rxclk,
   input  logic txready, rxready
 );
+  Guitar_Villains fullrun(.chip_select(1'b0), .clk(hwclk), .n_rst(~pb[19]), .button(pb[3:0]), .top_row(left[7:1]), .bottom_row(right[7:1]), .red_disp(red), .green_disp(green), .ss0(ss0[6:0]), .ss1(ss1[6:0]));
+  
+  //   //For EDIT DISPLAY Module
+  // logic toggle1;
+  // logic toggle2;
+  // logic [2:0]mode;
 
-  // Your code goes here...
-  logic [31:0] notes [1:0];
-  logic [7:0] score;
-  logic [2:0] mode;
-  always_comb begin
-    if(pb[2])
-      mode = 3'b0;
-    else
-      mode = 3'd4;
-  end
+  // //Displays the edited notes
+  // logic [6:0]ed_disp1;
+  // logic [6:0]ed_disp2;
 
-  assign notes[1] = 32'b11001100110011001100110011001100;
-  assign notes[0] = 32'b10101010101010101010101010101010;
-  main_game game(.clk(hwclk), .n_rst(~pb[19]), .mode(mode), .notes1(notes[0]), .notes2(notes[1]), .diff(23'd4000000), .button_1(pb[0]), .button_2(pb[1]), .out({ss7[3], ss7[0], ss6[3], ss6[0], ss5[3], ss5[0], ss4[3], ss4[0], ss3[3], ss3[0], ss2[3], ss2[0], ss1[3], ss1[0], ss0[3], ss0[0]}), .num_misses(left), .num_hits(right), .hit(green), .missed(red), .score(score));
+  // //Displays the current position of the edit
+  // logic [6:0]units;
+  // logic [6:0]tens;
+  // assign mode = 3'd2;
+  // logic [31:0]notes[1:0];
+  // song_display disp_song( .clk(hwclk), .nrst(~pb[19]), .toggle_green(green), .toggle_red(red), .toggle(pb[3]), .note(pb[1:0]), .mode(mode), .note1(notes[0]), .note2(notes[1]), .display_note1(left[6:0]), .display_note2(right[6:0]), .units(ss0[6:0]), .tens(ss1[6:0]));
 endmodule
+
+
+
 
 // Add more modules down here...
