@@ -16,7 +16,7 @@ In addition to the main game, the design includes other features. The player can
 
 ## Github Directory
 [Source Code](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/source)
-[Documents] insert docs url
+[Documents](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs)
 
 
 ## Pin Layout
@@ -29,6 +29,7 @@ In addition to the main game, the design includes other features. The player can
 - GPIO[37] = green_disp
 
 ## Supporting Equipment
+![Breadboard Layout](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs/Breadboard.png)
 - 1 red LED
 - 1 green LED
 - 14 x color LED
@@ -44,7 +45,7 @@ In addition to the main game, the design includes other features. The player can
 
 
 ## RTL Diagrams
-![Top RTL](https://github.com/STARS-Design-Track-2023/GuitarVillains/blob/jakob/main_game/docs/Component%20RTL-Top%20RTL.png)
+![Top RTL](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs/Component%20RTL-Top%20RTL.png)
 
 ## Statement from Purdue
 Pending
