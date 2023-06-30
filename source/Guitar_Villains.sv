@@ -1,4 +1,4 @@
-module Guitar_Villans(
+module Guitar_Villains(
     input logic clk,
     input logic n_rst,
     input logic [3:0]button,
