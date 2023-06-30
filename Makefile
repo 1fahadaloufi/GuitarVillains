@@ -20,7 +20,7 @@ TOP_FILE         :=
 # List internal component/block files here (separate the filenames with spaces)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
 
-COMPONENT_FILES  :=  bcd9comp1.sv bcdadd1.sv bcdadd4.sv bcdaddsub4.sv bcdssdec.sv clk_div.sv diff_speed.sv  finish_counter.sv Guitar_Villans.sv hit_scanning_and_scoring.sv main_game.sv negedge_det.sv NEW_high_score_check.sv note_led_display.sv scroll_and_display.sv song_display.sv song_editor.sv ssdec.sv state_fsm.sv sync_edge_det.sv sync_posedge.sv sync_posedgeqiao.sv
+COMPONENT_FILES  :=  bcd9comp1.sv bcdadd1.sv bcdadd4.sv bcdaddsub4.sv bcdssdec.sv clk_div.sv diff_speed.sv  finish_counter.sv Guitar_Villains.sv hit_scanning_and_scoring.sv main_game.sv negedge_det.sv NEW_high_score_check.sv note_led_display.sv scroll_and_display.sv song_display.sv song_editor.sv ssdec.sv state_fsm.sv sync_edge_det.sv sync_posedge.sv sync_posedgeqiao.sv
 
 # song_display.sv song_editor.sv ssdec.sv sync_edge_det.sv note_led_display.sv
 
