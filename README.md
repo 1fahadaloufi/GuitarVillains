@@ -14,6 +14,11 @@ Two rows of LED's each display their own sequence of beats that scroll from righ
 
 In addition to the main game, the design includes other features. The player can use a button to change between modes that allow them to select the speed of the beats, freely change the sequence of beats for each row, pause the gmae, or view the the current high score.
 
+## Github Directory
+[Source Code] (https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/source)
+[Documents] insert docs url
+
+
 ## Pin Layout
 - GPIO[7:4] = button[3:0]
 - GPIO[14:8] = top_row[6:0]
@@ -26,16 +31,16 @@ In addition to the main game, the design includes other features. The player can
 ## Supporting Equipment
 - 1 red LED
 - 1 green LED
-14 x color LED
-2 seven segment displays
+- 14 x color LED
+- 2 seven segment displays
 
-16 150 ohm resistors
-8 1k ohm resistors
+- 16 150 ohm resistors
+- 8 1k ohm resistors
 
-4 push buttons
+- 4 push buttons
 
-4 Schmitt-trigger inverters
-4 0.1 microfarad capacitors
+- 4 Schmitt-trigger inverters
+- 4 0.1 microfarad capacitors
 
 
 ## RTL Diagrams
