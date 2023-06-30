@@ -47,5 +47,3 @@ In addition to the main game, the design includes other features. The player can
 ## RTL Diagrams
 ![Top RTL](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs/Component%20RTL-Top%20RTL.png)
 
-## Statement from Purdue
-Pending
