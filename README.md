@@ -7,7 +7,7 @@
 * Mike Carranza
 * Fahad Aloufi
 
-## Guitar Villains
+## Project Description
 Based on the popular game Guitar Hero, this game offers a dynamic experience where players can put their rythm and precision to the test. Features such as song editting and difficulty selection enable new players to find their bearings while also allowing more confident players to push their reflexes to their limits. These features challenge players' skills, but also their creativity. Players can also keep track of their progress by comparing their score to the high score stored in their session. 
 
 Two rows of LED's each display their own sequence of beats that scroll from right to left across the rows. Once a beat reaches the left most LED of either row, the player must press the button assigned to that row to score a hit. Naturally, there a total of two buttons: one for each row. Depending of how close to the beat the player presses the buttons, they will be rewarded either 1, 3, or 5 points. If the player hits a button when there are no beats on that row, they will score a miss and their total score will be decremented by 1. 
@@ -28,23 +28,12 @@ In addition to the main game, the design includes other features. The player can
 - GPIO[36] = red_disp
 - GPIO[37] = green_disp
 
-## insert an image for the project
 
-## [Team Name]
-* Team Member 1
-* Team Member 2
-* Team Member 3
-* Team Member 4
-* Project Manager  
-
-## [Project Name]
-Description of functionality, how to use it, and any supporting equipment required. Here also link to the user manual document within the github repository. 
-
-## Pin Layout
-Put all the GPIO pin numbers, i/o/io determination, and labels. Start labeling the GPIOs from 0 to 33 rather than from 4 - 37. 
 
 ## Supporting Equipment
-![Breadboard Layout](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs/Breadboard.png)
+![Breadboard Layout](docs/Breadboard.png)
+<h3 align="center">Breadboard Setup</h3>
+
 - 1 red LED
 - 1 green LED
 - 14 x color LED
@@ -60,7 +49,5 @@ Put all the GPIO pin numbers, i/o/io determination, and labels. Start labeling t
 
 
 ## RTL Diagrams
-![Top RTL](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs/Component%20RTL-Top%20RTL.png)
-Only show and describe your top-level RTL that shows the total # of flip flops here. For the rest of your RTLs, link to a "docs" directory within the GitHub page
-that shows all component RTLs, state diagrams, and the top level RTL. Please have those as a PDF or a JPEG. 
-
+![Top RTL](docs/Component%20RTL-Top%20RTL.png)
+<h3 align="center">Top level RTL</h3>
