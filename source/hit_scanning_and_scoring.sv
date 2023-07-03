@@ -175,19 +175,19 @@ module hit_scanning_and_scoring(
     if ((counts >= 1 && counts <= 6000000) || (counts >= 1600000 && counts <= 2200000)) begin
       if (pushed) begin
         next_hit = 1'b1;
-        next_acc = 1;
+        next_acc = 3;
       end
     end
     else if ((counts >= 600001 && counts <= 900000) || (counts >= 1300000 && counts <= 159999)) begin
       if (pushed) begin
         next_hit = 1'b1;
-        next_acc = 3;
+        next_acc = 5;
       end
     end
     else if ((counts >= 900001) && (counts <= 1299999)) begin
       if (pushed) begin
         next_hit = 1'b1;
-        next_acc = 5;
+        next_acc = 7;
       end
     end 
     else if (pushed) begin
