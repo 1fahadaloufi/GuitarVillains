@@ -5,7 +5,7 @@
 * Shresth Mathur
 * Claire Qiao
 * Mike Carranza
-* Fahad Aloufi
+* TA: Fahad Aloufi
 
 ## Project Description
 Based on the popular game Guitar Hero, this game offers a dynamic experience where players can put their rythm and precision to the test. Features such as song editting and difficulty selection enable new players to find their bearings while also allowing more confident players to push their reflexes to their limits. These features challenge players' skills, but also their creativity. Players can also keep track of their progress by comparing their score to the high score stored in their session. 
