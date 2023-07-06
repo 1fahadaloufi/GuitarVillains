@@ -14,9 +14,9 @@ Two rows of LED's each display their own sequence of beats that scroll from righ
 
 In addition to the main game, the design includes other features. The player can use a button to change between modes that allow them to select the speed of the beats, freely change the sequence of beats for each row, pause the gmae, or view the the current high score.
 
-## Github Directory
+## Github Directory Structure 
 - [Source Code](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/source)
-- [Documents](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs)
+- [Documents: Includes RTL Diagrams and User Manual](https://github.com/STARS-Design-Track-2023/GuitarVillains/tree/main/docs)
 
 
 ## Pin Layout
