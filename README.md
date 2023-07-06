@@ -20,13 +20,13 @@ In addition to the main game, the design includes other features. The player can
 
 
 ## Pin Layout
-- GPIO[7:4] = button[3:0]
-- GPIO[14:8] = top_row[6:0]
-- GPIO[21:15] = bottom_row[6:0]
-- GPIO[28:22] = ss0[6:0]
-- GPIO[35:29] = ss1[6:0]
-- GPIO[36] = red_disp
-- GPIO[37] = green_disp
+- GPIO[3:0] = button[3:0] - Input
+- GPIO[10:4] = top_row[6:0] - Output
+- GPIO[17:11] = bottom_row[6:0] - Output
+- GPIO[24:18] = ss0[6:0] - Output
+- GPIO[31:25] = ss1[6:0] - Output
+- GPIO[32] = red_disp - Output
+- GPIO[33] = green_disp - Output
 
 
 
